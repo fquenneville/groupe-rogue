@@ -109,6 +109,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.3 });
   document.querySelectorAll('.ops-bandeau').forEach(el => observer.observe(el));
 
+  // ---- Hero brand mark decode-in ----
+  const heroMark = document.querySelector('.hero-mark');
+  if (heroMark && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#/_-·';
+    const totalFrames = 14;
+    heroMark.querySelectorAll('.hero-mark-line').forEach((line, i) => {
+      const final = line.textContent;
+      let frame = 0;
+      setTimeout(() => {
+        const tick = setInterval(() => {
+          frame++;
+          const reveal = Math.floor((frame / totalFrames) * final.length);
+          line.textContent = final.split('').map((ch, idx) => {
+            if (ch === ' ' || idx < reveal) return ch;
+            return glyphs[Math.floor(Math.random() * glyphs.length)];
+          }).join('');
+          if (frame >= totalFrames) {
+            line.textContent = final;
+            clearInterval(tick);
+          }
+        }, 40);
+      }, i * 130);
+    });
+  }
+
   // ---- Counter animation ----
   const counterObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {

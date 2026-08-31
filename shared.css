@@ -196,6 +196,17 @@ body {
   background: radial-gradient(ellipse at 50% 0%, rgba(192,68,40,0.08) 0%, transparent 70%);
   pointer-events: none;
 }
+.hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(245,245,245,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,245,245,0.04) 1px, transparent 1px);
+  background-size: 42px 42px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 15%, black 0%, transparent 68%);
+  mask-image: radial-gradient(ellipse at 50% 15%, black 0%, transparent 68%);
+  pointer-events: none;
+}
 
 .hero-eyebrow {
   font-size: 11px; font-weight: 600;
@@ -224,6 +235,68 @@ body {
 .hero-ctas {
   display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
 }
+
+/* ---- Hero brand mark (typographic, replaces static hero image) ---- */
+.hero-mark {
+  font-family: var(--font-display);
+  font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.02em; line-height: 0.86;
+  margin: 0 auto 2rem;
+}
+.hero-mark-line {
+  display: block;
+  font-size: clamp(56px, 10vw, 120px);
+  color: var(--blanc);
+}
+.hero-mark-line.accent { color: var(--rogueship); }
+
+/* Diff-style tagline: what was, struck through, patched by what now is */
+.hero-diff {
+  max-width: 600px; margin: 0 auto 2.5rem;
+  text-align: left;
+  border-left: 2px solid var(--bordure);
+  padding-left: 1.1rem;
+}
+.hero-diff-old,
+.hero-diff-new {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(14px, 1.6vw, 17px);
+  line-height: 1.85;
+}
+.hero-diff-old {
+  color: rgba(160,160,160,0.55);
+  text-decoration: line-through;
+  text-decoration-color: rgba(160,160,160,0.35);
+}
+.hero-diff-new { color: var(--blanc); font-weight: 500; }
+.hero-diff-sign {
+  display: inline-block; width: 1.3em;
+  font-weight: 700;
+}
+.hero-diff-old .hero-diff-sign { color: #884444; }
+.hero-diff-new .hero-diff-sign { color: var(--trajectoires); }
+
+.hero-cursor {
+  display: inline-block; width: 8px; height: 1em;
+  background: var(--rogueship);
+  margin-left: 3px; vertical-align: text-bottom;
+  animation: hero-blink 1s step-end infinite;
+}
+@keyframes hero-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .hero-cursor { animation: none; }
+}
+
+/* Four-secteur tick bar — previews the colors used throughout the page */
+.hero-secteurs-bar {
+  display: flex; justify-content: center; gap: 6px;
+  margin-bottom: 2.5rem;
+}
+.hero-sb { width: 26px; height: 4px; border-radius: 2px; }
+.hero-sb.traj { background: var(--trajectoires); }
+.hero-sb.lead { background: var(--leaderships); }
+.hero-sb.eco { background: var(--ecosystemes); }
+.hero-sb.fut { background: var(--futurs); }
 
 /* Hero variants */
 .hero-page {
@@ -964,11 +1037,3 @@ body {
   margin-bottom: 8px;
 }
 .secteur-desc-text { font-size: 14px; color: var(--gris); line-height: 1.65; }
-
-/* Hero image (replaces H1 + sub) */
-.hero-logo-img {
-  max-width: min(760px, 92%);
-  width: 100%;
-  margin: 0 auto 2.5rem;
-  display: block;
-}
