@@ -1,0 +1,147 @@
+/* ============================================================
+   TUILE-SECTEUR — Tuiles des 4 secteurs d'impact
+   Fond #141414, hover = lueur couleur secteur 20% + scale(1.02)
+   ============================================================ */
+
+.tuile-secteur {
+  background-color: var(--color-bg-secondary);
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-32);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform var(--transition-hover),
+    box-shadow var(--transition-hover),
+    border-color var(--transition-hover);
+}
+
+/* Hover effect */
+.tuile-secteur:hover {
+  transform: scale(1.02);
+  border-color: var(--sector-color, var(--color-border));
+  box-shadow: 0 0 32px 0 var(--sector-glow, rgba(255,255,255,0.05));
+}
+
+/* Sector color variables */
+.tuile-secteur[data-sector="trajectoires"] {
+  --sector-color: var(--sector-trajectoires);
+  --sector-glow:  var(--sector-trajectoires-glow);
+}
+.tuile-secteur[data-sector="structures"] {
+  --sector-color: var(--sector-structures);
+  --sector-glow:  var(--sector-structures-glow);
+}
+.tuile-secteur[data-sector="ecosystemes"] {
+  --sector-color: var(--sector-ecosystemes);
+  --sector-glow:  var(--sector-ecosystemes-glow);
+}
+.tuile-secteur[data-sector="futurs"] {
+  --sector-color: var(--sector-futurs);
+  --sector-glow:  var(--sector-futurs-glow);
+}
+
+/* Color accent line at left */
+.tuile-secteur::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background-color: var(--sector-color, var(--color-border));
+  opacity: 0.7;
+  transition: opacity var(--transition-hover);
+}
+
+.tuile-secteur:hover::before {
+  opacity: 1;
+}
+
+/* Header row */
+.tuile-secteur__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-12);
+}
+
+/* Color dot */
+.tuile-secteur__dot {
+  width: 10px;
+  height: 10px;
+  min-width: 10px;
+  border-radius: 50%;
+  background-color: var(--sector-color, var(--color-border));
+  margin-top: 5px;
+}
+
+/* Title */
+.tuile-secteur__title {
+  font-size: var(--text-h3);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--lh-tight);
+}
+
+/* Keywords */
+.tuile-secteur__keywords {
+  font-size: var(--text-eyebrow);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--sector-color, var(--color-text-secondary));
+  opacity: 0.8;
+}
+
+/* Hover description — hidden by default, shown on hover */
+.tuile-secteur__hover {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: var(--lh-body);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-height var(--transition-hover),
+    opacity var(--transition-hover);
+}
+
+.tuile-secteur:hover .tuile-secteur__hover,
+.tuile-secteur:focus-within .tuile-secteur__hover {
+  max-height: 120px;
+  opacity: 1;
+}
+
+/* Link behavior */
+.tuile-secteur[role="link"] {
+  cursor: pointer;
+}
+
+.tuile-secteur[role="link"]:focus-visible {
+  outline: 2px solid var(--sector-color, var(--color-accent));
+  outline-offset: 3px;
+}
+
+/* ----------------------------------------------------------
+   GRID LAYOUT — 2×2 mobile, 4×1 desktop
+---------------------------------------------------------- */
+.sectors-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-16);
+}
+
+@media (max-width: 1024px) {
+  .sectors-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .sectors-grid {
+    grid-template-columns: 1fr;
+  }
+}

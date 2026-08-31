@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr" data-i18n-root="..">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Accès accordé. Bienvenue dans l'Écosystème de Puissance Privé.">
+  <meta name="robots" content="noindex, follow">
+  <title>Accès Accordé — Groupe ROGUE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/components/nav.css">
+  <link rel="stylesheet" href="../assets/css/components/btn-cta.css">
+  <link rel="stylesheet" href="../assets/css/components/footer.css">
+  <style>
+    .merci-hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-64) var(--space-24);
+      position: relative;
+    }
+
+    /* Ambient background glow */
+    .merci-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 40%, rgba(192,68,40,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .merci-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--trepied-rogueship);
+      margin-bottom: var(--space-24);
+      font-weight: 600;
+    }
+
+    .merci-title {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 700;
+      color: var(--color-text-primary);
+      line-height: 1.2;
+      margin-bottom: var(--space-16);
+    }
+
+    .merci-subtitle {
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-48);
+    }
+
+    /* Status card */
+    .merci-card {
+      width: 100%;
+      max-width: 560px;
+      background-color: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-top: 3px solid var(--trepied-rogueship);
+      border-radius: var(--radius-card);
+      padding: var(--space-40);
+      margin: 0 auto var(--space-48);
+      text-align: left;
+    }
+
+    /* Loading state */
+    .merci-card[data-session-status="loading"] .status-loading { display: flex; }
+    .merci-card[data-session-status="complete"] .status-complete { display: block; }
+    .merci-card[data-session-status="error"] .status-error { display: block; }
+    .status-loading,
+    .status-complete,
+    .status-error { display: none; }
+
+    .status-loading {
+      align-items: center;
+      gap: var(--space-12);
+      color: var(--color-text-secondary);
+      font-size: 14px;
+    }
+    .loading-dot {
+      width: 8px; height: 8px;
+      background-color: var(--trepied-rogueship);
+      border-radius: 50%;
+      animation: pulse 1.4s infinite;
+    }
+
+    .access-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: var(--space-12) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .access-row:last-child { border-bottom: none; }
+    .access-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+    }
+    .access-value {
+      font-size: 14px;
+      color: var(--color-text-primary);
+      text-align: right;
+    }
+    .status-badge {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 12px;
+      border-radius: 20px;
+      background-color: rgba(26,122,106,0.2);
+      color: var(--trepied-membership);
+      font-weight: 600;
+    }
+
+    /* Steps */
+    .merci-steps {
+      max-width: 480px;
+      margin: 0 auto var(--space-48);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-12);
+    }
+    .merci-step {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-16);
+      font-size: 15px;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+    .step-number {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--color-text-primary);
+    }
+
+    .merci-signature {
+      margin-top: var(--space-64);
+      text-align: center;
+    }
+    .merci-signature__name {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-primary);
+    }
+    .merci-signature__sub {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      margin-top: 4px;
+      font-style: italic;
+    }
+
+    .merci-ctas {
+      display: flex;
+      gap: var(--space-16);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: var(--space-48);
+    }
+
+    .product-name-block {
+      display: none;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-8);
+    }
+  </style>
+</head>
+<body data-page="merci">
+
+  <a href="#main-content" class="skip-link">Passer au contenu principal</a>
+
+  <!-- Minimal nav -->
+  <nav class="nav" role="navigation" aria-label="Navigation principale">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="../" class="nav__logo" aria-label="Groupe ROGUE — Accueil">
+          <span>GROUPE</span><span class="nav__logo-accent">ROGUE</span>
+        </a>
+        <div class="nav__right">
+          <div class="nav__lang" role="group" aria-label="Langue">
+            <button class="nav__lang-btn lang-active" data-lang-switch="fr" aria-pressed="true">FR</button>
+            <button class="nav__lang-btn" data-lang-switch="en" aria-pressed="false">EN</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <section class="merci-hero section section--dark">
+
+      <p class="merci-eyebrow" data-i18n="merci.eyebrow">ACCÈS ACCORDÉ</p>
+      <h1 class="merci-title" data-i18n="merci.title">Vous venez d'intégrer l'Écosystème.</h1>
+      <p class="merci-subtitle" data-i18n="merci.subtitle">Votre demande d'accès a été validée.</p>
+
+      <!-- SESSION STATUS CARD -->
+      <div class="merci-card" data-session-status="loading">
+        <div class="status-loading">
+          <div class="loading-dot"></div>
+          <span>Vérification en cours…</span>
+        </div>
+
+        <div class="status-complete">
+          <p class="product-name-block" data-session-product></p>
+          <div class="access-row">
+            <span class="access-label" data-i18n="merci.portal_label">Portail</span>
+            <span class="access-value" data-i18n="merci.portal_url">hub.grouperogue.com</span>
+          </div>
+          <div class="access-row">
+            <span class="access-label" data-i18n="merci.id_label">Identifiant</span>
+            <span class="access-value" data-i18n="merci.id_value">Votre adresse email</span>
+          </div>
+          <div class="access-row">
+            <span class="access-label" data-i18n="merci.status_label">Statut</span>
+            <span class="access-value"><span class="status-badge" data-i18n="merci.status_value">Membre Actif</span></span>
+          </div>
+        </div>
+
+        <div class="status-error">
+          <p style="color:var(--color-text-secondary); font-size:14px;">Session non vérifiable. Si vous avez complété l'achat, vérifiez votre email pour les détails d'accès.</p>
+        </div>
+      </div>
+
+      <!-- BODY COPY -->
+      <p style="font-size:16px; color:var(--color-text-secondary); margin-bottom:var(--space-8);" data-i18n="merci.body_1">Vous ne venez pas d'acheter une formation.</p>
+      <p style="font-size:18px; color:var(--color-text-primary); font-weight:600; margin-bottom:var(--space-40);" data-i18n="merci.body_2">Vous venez d'intégrer un Écosystème de Puissance Privé (EPP).</p>
+
+      <!-- STEPS -->
+      <div class="merci-steps">
+        <div class="merci-step">
+          <span class="step-number">1</span>
+          <span data-i18n="merci.step_1">Commencez par L'Éveil — identifiez les failles.</span>
+        </div>
+        <div class="merci-step">
+          <span class="step-number">2</span>
+          <span data-i18n="merci.step_2">Passez à La Forge — durcissez l'expertise.</span>
+        </div>
+        <div class="merci-step">
+          <span class="step-number">3</span>
+          <span data-i18n="merci.step_3">Observez Le Chantier — mesurez l'impact.</span>
+        </div>
+      </div>
+
+      <!-- CTAs -->
+      <div class="merci-ctas">
+        <a href="https://hub.grouperogue.com" class="btn btn--primary btn--lg" data-i18n="merci.cta_portal">Accéder au portail →</a>
+        <a href="../" class="btn btn--ghost btn--lg" data-i18n="merci.cta_home">Retour à l'accueil</a>
+      </div>
+
+      <!-- SIGNATURE -->
+      <div class="merci-signature">
+        <p class="merci-signature__name" data-i18n="merci.signature">La Cellule — Groupe ROGUE</p>
+        <p class="merci-signature__sub" data-i18n="merci.signature_sub">Artisans de la Divergence</p>
+      </div>
+
+    </section>
+  </main>
+
+  <script src="../assets/js/i18n.js"></script>
+  <script src="../assets/js/checkout.js"></script>
+</body>
+</html>

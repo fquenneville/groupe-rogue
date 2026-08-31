@@ -1,0 +1,150 @@
+/* ============================================================
+   GROUPE ROGUE — Design Tokens
+   tokens.css — Source of truth for all visual variables.
+   Never use raw colour/size values outside this file.
+   ============================================================ */
+
+:root {
+
+  /* ----------------------------------------------------------
+     BACKGROUNDS
+  ---------------------------------------------------------- */
+  --color-bg-primary:   #0A0A0A;   /* Hero, nav, sections impact */
+  --color-bg-secondary: #141414;   /* Cards, surfaces, bandeau ops */
+  --color-bg-light:     #F5F5F5;   /* Sections lisibles sur fond clair */
+
+  /* ----------------------------------------------------------
+     TEXT
+  ---------------------------------------------------------- */
+  --color-text-primary:   #F5F5F5; /* Titres et corps sur fond sombre */
+  --color-text-secondary: #A0A0A0; /* Sous-titres, légendes, metadata */
+  --color-text-dark:      #0A0A0A; /* Corps sur fond clair */
+
+  /* ----------------------------------------------------------
+     ACCENTS GLOBAUX
+  ---------------------------------------------------------- */
+  --color-accent:  #E8E0D0; /* Logo, effets éclat */
+  --color-border:  #2E2E2E; /* Bordures & séparateurs */
+
+  /* ----------------------------------------------------------
+     SECTEURS D'IMPACT
+  ---------------------------------------------------------- */
+  --sector-trajectoires: #2D7A4F; /* Éducation & Famille */
+  --sector-structures:   #1B4F8A; /* Gouvernance & Entreprise */
+  --sector-ecosystemes:  #C47D2A; /* Santé & Société */
+  --sector-futurs:       #6B35CC; /* Tech / Innovation */
+
+  /* Hover glow (20% opacity) — used via box-shadow */
+  --sector-trajectoires-glow: rgba(45, 122, 79, 0.20);
+  --sector-structures-glow:   rgba(27, 79, 138, 0.20);
+  --sector-ecosystemes-glow:  rgba(196, 125, 42, 0.20);
+  --sector-futurs-glow:       rgba(107, 53, 204, 0.20);
+
+  /* ----------------------------------------------------------
+     VECTEURS ROGUES
+  ---------------------------------------------------------- */
+  --vector-propulseur: #D94F1E; /* Orange Cobalt / Magma */
+  --vector-motivateur: #E8A800; /* Jaune Solaire / Ambre */
+  --vector-coach:      #1A8A8A; /* Turquoise Profond / Cyan */
+  --vector-architecte: #4A4A4A; /* Gris Anthracite / Argent */
+
+  /* ----------------------------------------------------------
+     LE TRÉPIED — Niveaux d'accès
+  ---------------------------------------------------------- */
+  --trepied-membership:  #1A7A6A; /* Teal / Vert-Bleu */
+  --trepied-rogueship:   #C04428; /* Coral / Rouge dissidence — CTA principal */
+  --trepied-partnership: #5A2DAA; /* Violet stratégique */
+
+  /* ----------------------------------------------------------
+     ROGUE FILE — Sections
+  ---------------------------------------------------------- */
+  --rf-eveil:    #E8EDF0; /* Blanc Éclatant / Givre */
+  --rf-forge:    #C0440A; /* Rouge Incandescent / Cuivre */
+  --rf-chantier: #2A2A2A; /* Noir Bitume / Graphite */
+
+  /* ----------------------------------------------------------
+     TYPOGRAPHIE
+  ---------------------------------------------------------- */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Courier New', Courier, monospace;
+
+  /* Scale */
+  --text-hero:    clamp(64px, 8vw, 96px);  /* H1 hero */
+  --text-h1:      clamp(48px, 6vw, 80px);  /* H1 pages intérieures */
+  --text-h2:      clamp(32px, 4vw, 48px);  /* H2 */
+  --text-h3:      clamp(22px, 2.5vw, 32px);/* H3 */
+  --text-body:    clamp(16px, 1.5vw, 20px);/* Corps */
+  --text-small:   16px;                     /* Min body */
+  --text-label:   14px;                     /* Labels / codes */
+  --text-eyebrow: 10px;                     /* Eyebrow uppercase */
+
+  /* Weights */
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-bold:    700;
+
+  /* Line heights */
+  --lh-heading: 1.1;
+  --lh-body:    1.7;
+  --lh-tight:   1.3;
+
+  /* Letter spacing */
+  --ls-eyebrow: 0.15em;
+  --ls-cta:     0.12em;
+
+  /* ----------------------------------------------------------
+     ESPACEMENT
+  ---------------------------------------------------------- */
+  --space-2:   2px;
+  --space-4:   4px;
+  --space-8:   8px;
+  --space-12:  12px;
+  --space-16:  16px;
+  --space-20:  20px;
+  --space-24:  24px;
+  --space-32:  32px;
+  --space-40:  40px;
+  --space-48:  48px;
+  --space-64:  64px;
+  --space-80:  80px;
+  --space-96:  96px;
+  --space-120: 120px;
+  --space-160: 160px;
+
+  /* ----------------------------------------------------------
+     LAYOUT
+  ---------------------------------------------------------- */
+  --container-max:  1280px;
+  --container-pad:  clamp(20px, 5vw, 80px);
+  --nav-height:     72px;
+  --section-pad:    clamp(64px, 8vw, 120px);
+
+  /* ----------------------------------------------------------
+     COMPOSANTS
+  ---------------------------------------------------------- */
+  --radius-cta:     2px;    /* Boutons CTA — carré/angulaire */
+  --radius-card:    4px;    /* Cards */
+  --radius-badge:   100px;  /* Badges / pills */
+  --radius-input:   2px;    /* Inputs formulaires */
+
+  /* Transitions */
+  --transition-fast:   150ms ease;
+  --transition-hover:  200ms ease;
+  --transition-smooth: 300ms ease;
+
+  /* ----------------------------------------------------------
+     Z-INDEX
+  ---------------------------------------------------------- */
+  --z-base:    0;
+  --z-card:    10;
+  --z-overlay: 100;
+  --z-nav:     900;
+  --z-modal:   1000;
+
+  /* ----------------------------------------------------------
+     BREAKPOINTS (reference — à utiliser dans les media queries)
+     mobile:  375px
+     tablet:  768px
+     desktop: 1280px
+  ---------------------------------------------------------- */
+}

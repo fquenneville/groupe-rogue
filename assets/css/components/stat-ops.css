@@ -1,0 +1,210 @@
+/* ============================================================
+   STAT-OPS — Bandeau Statut des Opérations
+   Barre de progression animée CSS, données CMS Webflow
+   ============================================================ */
+
+/* Bandeau container */
+.ops-bandeau {
+  background-color: var(--color-bg-secondary);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-48) 0;
+}
+
+.ops-bandeau__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-32);
+}
+
+.ops-bandeau__title {
+  font-size: var(--text-h3);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+}
+
+.ops-bandeau__status-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  font-size: 11px;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sector-trajectoires);
+}
+
+.ops-bandeau__pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--sector-trajectoires);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Grid of ops */
+.ops-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-24);
+}
+
+@media (max-width: 768px) {
+  .ops-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Individual op card */
+.stat-ops {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding: var(--space-24);
+  background-color: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+}
+
+/* Code + status row */
+.stat-ops__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+.stat-ops__code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.06em;
+}
+
+.stat-ops__status {
+  font-size: 10px;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  padding: 2px 8px;
+  border-radius: var(--radius-badge);
+}
+
+/* Title */
+.stat-ops__title {
+  font-size: 16px;
+  font-weight: var(--weight-medium);
+  color: var(--color-text-primary);
+  line-height: var(--lh-tight);
+}
+
+/* Progress bar */
+.stat-ops__progress-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.stat-ops__progress-bar {
+  height: 3px;
+  background-color: var(--color-border);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.stat-ops__progress-fill {
+  height: 100%;
+  background-color: var(--trepied-rogueship);
+  border-radius: 100px;
+  width: 0%;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animate when in viewport (class added by JS) */
+.stat-ops.is-visible .stat-ops__progress-fill {
+  width: var(--progress, 0%);
+}
+
+/* Progress percentage */
+.stat-ops__progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--color-text-secondary);
+}
+
+.stat-ops__percent {
+  font-family: var(--font-mono);
+  color: var(--trepied-rogueship);
+}
+
+/* ----------------------------------------------------------
+   IMPACT STATS (chiffres clés)
+---------------------------------------------------------- */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-48) var(--space-24);
+  background-color: var(--color-bg-secondary);
+  border-right: 1px solid var(--color-border);
+  gap: var(--space-8);
+}
+
+.stat-item:last-child {
+  border-right: none;
+}
+
+.stat-item__number {
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+  line-height: 1;
+}
+
+.stat-item__label {
+  font-size: var(--text-eyebrow);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+/* Counter animation target */
+.stat-counter {
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .stats-row {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-item {
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-32) var(--space-24);
+  }
+
+  .stat-item:last-child {
+    border-bottom: none;
+  }
+}

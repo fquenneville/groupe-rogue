@@ -1,0 +1,208 @@
+/* ============================================================
+   CARD-ROGUE-FILE — Carte produit dans /boutique
+   Accent couleur secteur, mini-tabs Éveil/Forge/Chantier
+   ============================================================ */
+
+.card-rf {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-hover), border-color var(--transition-hover);
+}
+
+.card-rf:hover {
+  transform: translateY(-3px);
+  border-color: var(--sector-color, var(--color-border));
+}
+
+/* Sector color variables */
+.card-rf[data-sector="trajectoires"] { --sector-color: var(--sector-trajectoires); }
+.card-rf[data-sector="structures"]   { --sector-color: var(--sector-structures); }
+.card-rf[data-sector="ecosystemes"]  { --sector-color: var(--sector-ecosystemes); }
+.card-rf[data-sector="futurs"]       { --sector-color: var(--sector-futurs); }
+
+/* Top accent bar */
+.card-rf__accent {
+  height: 3px;
+  background-color: var(--sector-color, var(--color-border));
+  width: 100%;
+}
+
+/* Header */
+.card-rf__header {
+  padding: var(--space-20) var(--space-24) 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+/* Code label */
+.card-rf__code {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--sector-color, var(--color-text-secondary));
+  letter-spacing: 0.08em;
+}
+
+/* Sector badge */
+.card-rf__sector-badge {
+  font-size: 10px;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sector-color, var(--color-text-secondary));
+  border: 1px solid var(--sector-color, var(--color-border));
+  padding: 2px 8px;
+  border-radius: var(--radius-badge);
+  white-space: nowrap;
+}
+
+/* Title */
+.card-rf__title {
+  padding: var(--space-12) var(--space-24) 0;
+  font-size: clamp(16px, 1.5vw, 20px);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--lh-tight);
+}
+
+/* Mini triptyque tabs */
+.card-rf__triptyque {
+  display: flex;
+  gap: 1px;
+  margin: var(--space-16) var(--space-24) 0;
+  background-color: var(--color-border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.card-rf__tab {
+  flex: 1;
+  text-align: center;
+  font-size: 10px;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 4px;
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-primary);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+  cursor: default;
+}
+
+.card-rf__tab--eveil   { background-color: rgba(232, 237, 240, 0.08); color: var(--rf-eveil); }
+.card-rf__tab--forge   { background-color: rgba(192, 68, 10,  0.12); color: var(--rf-forge); }
+.card-rf__tab--chantier{ background-color: rgba(42, 42, 42,   0.60); color: var(--color-text-secondary); }
+
+/* Price row */
+.card-rf__prices {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-12);
+  padding: var(--space-16) var(--space-24) 0;
+}
+
+.card-rf__price-full {
+  font-size: var(--text-h3);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+}
+
+.card-rf__price-member {
+  font-size: 13px;
+  font-weight: var(--weight-medium);
+  color: var(--trepied-membership);
+  border: 1px solid var(--trepied-membership);
+  padding: 2px 8px;
+  border-radius: var(--radius-badge);
+}
+
+/* Format info */
+.card-rf__format {
+  padding: var(--space-8) var(--space-24) 0;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+/* CTA */
+.card-rf__footer {
+  padding: var(--space-20) var(--space-24);
+  margin-top: auto;
+}
+
+/* ----------------------------------------------------------
+   FILTER HIDDEN STATE
+---------------------------------------------------------- */
+.card-rf[data-hidden="true"] {
+  display: none;
+}
+
+/* ----------------------------------------------------------
+   FICHE PRODUIT EXPANDED (boutique detail view)
+---------------------------------------------------------- */
+.rf-detail {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.rf-detail__header {
+  padding: var(--space-48) var(--space-48) var(--space-32);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.rf-detail__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+}
+
+.rf-detail__section {
+  padding: var(--space-32) var(--space-32);
+  border-right: 1px solid var(--color-border);
+}
+
+.rf-detail__section:last-child {
+  border-right: none;
+}
+
+.rf-detail__section-label {
+  font-size: var(--text-eyebrow);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  margin-bottom: var(--space-12);
+}
+
+.rf-detail__section-label--eveil   { color: var(--rf-eveil); }
+.rf-detail__section-label--forge   { color: var(--rf-forge); }
+.rf-detail__section-label--chantier{ color: var(--color-text-secondary); }
+
+.rf-detail__section-text {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: var(--lh-body);
+}
+
+@media (max-width: 768px) {
+  .rf-detail__body {
+    grid-template-columns: 1fr;
+  }
+
+  .rf-detail__section {
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .rf-detail__section:last-child {
+    border-bottom: none;
+  }
+
+  .rf-detail__header {
+    padding: var(--space-32) var(--space-24) var(--space-24);
+  }
+}

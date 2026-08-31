@@ -1,0 +1,263 @@
+/* ============================================================
+   FORMS — Formulaires de contact et candidature
+   Tab switcher (contact), validation HTML5
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   FORM WRAPPER
+---------------------------------------------------------- */
+.form-wrapper {
+  max-width: 640px;
+}
+
+.form-wrapper--wide {
+  max-width: 800px;
+}
+
+/* ----------------------------------------------------------
+   TAB SWITCHER (page /contact — 3 onglets)
+---------------------------------------------------------- */
+.form-tabs {
+  display: flex;
+  gap: 2px;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-40);
+}
+
+.form-tab {
+  font-size: 13px;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary);
+  padding: var(--space-12) var(--space-24);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  cursor: pointer;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.form-tab:hover {
+  color: var(--color-text-primary);
+}
+
+.form-tab.is-active,
+.form-tab[aria-selected="true"] {
+  color: var(--color-text-primary);
+  border-bottom-color: var(--trepied-rogueship);
+}
+
+/* Tab panels */
+.form-panel {
+  display: none;
+}
+
+.form-panel.is-active {
+  display: block;
+}
+
+/* ----------------------------------------------------------
+   FORM FIELDS
+---------------------------------------------------------- */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.form-group--row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+}
+
+@media (max-width: 600px) {
+  .form-group--row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Label */
+.form-label {
+  font-size: 12px;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.form-label--required::after {
+  content: ' *';
+  color: var(--trepied-rogueship);
+}
+
+/* Inputs */
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-input);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  padding: 12px 16px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 0.6;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(232, 224, 208, 0.12);
+}
+
+/* Invalid state */
+.form-input:invalid:not(:placeholder-shown),
+.form-textarea:invalid:not(:placeholder-shown) {
+  border-color: var(--trepied-rogueship);
+}
+
+/* Select arrow */
+.form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A0A0A0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+.form-select option {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+}
+
+/* Textarea */
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: var(--lh-body);
+}
+
+/* Error message */
+.form-error {
+  font-size: 12px;
+  color: var(--trepied-rogueship);
+  margin-top: var(--space-4);
+}
+
+/* Hint */
+.form-hint {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  margin-top: var(--space-4);
+}
+
+/* ----------------------------------------------------------
+   CONSENT / CASL checkbox
+---------------------------------------------------------- */
+.form-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-12);
+}
+
+.form-consent input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  accent-color: var(--trepied-rogueship);
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.form-consent label {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+/* ----------------------------------------------------------
+   SUBMISSION STATES
+---------------------------------------------------------- */
+.form-success {
+  display: none;
+  background-color: rgba(26, 122, 106, 0.12);
+  border: 1px solid var(--trepied-membership);
+  border-radius: var(--radius-card);
+  padding: var(--space-24) var(--space-32);
+  color: var(--trepied-membership);
+  font-size: 15px;
+  line-height: var(--lh-body);
+}
+
+.form-success.is-visible {
+  display: block;
+}
+
+.form-loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* ----------------------------------------------------------
+   CANDIDATURE FORM (rogueship) — special fields
+---------------------------------------------------------- */
+.form-signature-field .form-textarea {
+  min-height: 80px;
+  font-style: italic;
+}
+
+.form-vector-select {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.form-vector-select .badge-vecteur {
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked + .badge-vecteur,
+input[type="radio"]:checked + .badge-vecteur {
+  background-color: var(--vector-color, var(--color-border));
+  color: #fff;
+}
+
+.form-sector-select {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+/* ----------------------------------------------------------
+   INTRO TEXT ABOVE FORM
+---------------------------------------------------------- */
+.form-intro-text {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: var(--lh-body);
+  padding: var(--space-16) var(--space-20);
+  background-color: rgba(255,255,255,0.03);
+  border-left: 2px solid var(--color-border);
+  margin-bottom: var(--space-32);
+}

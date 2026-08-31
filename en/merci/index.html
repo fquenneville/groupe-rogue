@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" data-i18n-root="../..">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Access granted. Welcome to the Private Power Ecosystem.">
+  <meta name="robots" content="noindex, follow">
+  <title>Access Granted — Groupe ROGUE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/global.css">
+  <link rel="stylesheet" href="../../assets/css/components/nav.css">
+  <link rel="stylesheet" href="../../assets/css/components/btn-cta.css">
+  <link rel="stylesheet" href="../../assets/css/components/footer.css">
+  <style>
+    .merci-hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: var(--space-64) var(--space-24); position: relative; }
+    .merci-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 40%, rgba(192,68,40,0.08) 0%, transparent 60%); pointer-events: none; }
+    .merci-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--trepied-rogueship); margin-bottom: var(--space-24); font-weight: 600; }
+    .merci-title { font-size: clamp(32px, 5vw, 56px); font-weight: 700; color: var(--color-text-primary); line-height: 1.2; margin-bottom: var(--space-16); }
+    .merci-subtitle { font-size: clamp(16px, 2vw, 20px); color: var(--color-text-secondary); margin-bottom: var(--space-48); }
+    .merci-card { width: 100%; max-width: 560px; background-color: var(--color-bg-secondary); border: 1px solid var(--color-border); border-top: 3px solid var(--trepied-rogueship); border-radius: var(--radius-card); padding: var(--space-40); margin: 0 auto var(--space-48); text-align: left; }
+    .merci-card[data-session-status="loading"] .status-loading { display: flex; }
+    .merci-card[data-session-status="complete"] .status-complete { display: block; }
+    .merci-card[data-session-status="error"] .status-error { display: block; }
+    .status-loading, .status-complete, .status-error { display: none; }
+    .status-loading { align-items: center; gap: var(--space-12); color: var(--color-text-secondary); font-size: 14px; }
+    .loading-dot { width: 8px; height: 8px; background-color: var(--trepied-rogueship); border-radius: 50%; animation: pulse 1.4s infinite; }
+    .access-row { display: flex; justify-content: space-between; align-items: flex-start; padding: var(--space-12) 0; border-bottom: 1px solid var(--color-border); }
+    .access-row:last-child { border-bottom: none; }
+    .access-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-secondary); }
+    .access-value { font-size: 14px; color: var(--color-text-primary); text-align: right; }
+    .status-badge { display: inline-block; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 12px; border-radius: 20px; background-color: rgba(26,122,106,0.2); color: var(--trepied-membership); font-weight: 600; }
+    .merci-steps { max-width: 480px; margin: 0 auto var(--space-48); display: flex; flex-direction: column; gap: var(--space-12); }
+    .merci-step { display: flex; align-items: flex-start; gap: var(--space-16); font-size: 15px; color: var(--color-text-secondary); line-height: 1.5; }
+    .step-number { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background-color: var(--color-bg-secondary); border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--color-text-primary); }
+    .merci-signature { margin-top: var(--space-64); text-align: center; }
+    .merci-signature__name { font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-primary); }
+    .merci-signature__sub { font-size: 12px; color: var(--color-text-secondary); margin-top: 4px; font-style: italic; }
+    .merci-ctas { display: flex; gap: var(--space-16); justify-content: center; flex-wrap: wrap; margin-bottom: var(--space-48); }
+    .product-name-block { display: none; font-size: 18px; font-weight: 700; color: var(--color-text-primary); margin-bottom: var(--space-8); }
+  </style>
+</head>
+<body data-page="merci">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="../" class="nav__logo" aria-label="Groupe ROGUE — Home"><span>GROUPE</span><span class="nav__logo-accent">ROGUE</span></a>
+        <div class="nav__right">
+          <div class="nav__lang" role="group" aria-label="Language">
+            <button class="nav__lang-btn" data-lang-switch="fr" aria-pressed="false">FR</button>
+            <button class="nav__lang-btn lang-active" data-lang-switch="en" aria-pressed="true">EN</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <main id="main-content">
+    <section class="merci-hero section section--dark">
+      <p class="merci-eyebrow" data-i18n="merci.eyebrow_en">ACCESS GRANTED</p>
+      <h1 class="merci-title" data-i18n="merci.title_en">You've joined the Ecosystem.</h1>
+      <p class="merci-subtitle" data-i18n="merci.subtitle_en">Your access request has been validated.</p>
+
+      <div class="merci-card" data-session-status="loading">
+        <div class="status-loading"><div class="loading-dot"></div><span>Verifying…</span></div>
+        <div class="status-complete">
+          <p class="product-name-block" data-session-product></p>
+          <div class="access-row"><span class="access-label" data-i18n="merci.portal_label_en">Portal</span><span class="access-value" data-i18n="merci.portal_url">hub.grouperogue.com</span></div>
+          <div class="access-row"><span class="access-label" data-i18n="merci.id_label_en">Login</span><span class="access-value" data-i18n="merci.id_value_en">Your email address</span></div>
+          <div class="access-row"><span class="access-label" data-i18n="merci.status_label_en">Status</span><span class="access-value"><span class="status-badge" data-i18n="merci.status_value_en">Active Member</span></span></div>
+        </div>
+        <div class="status-error"><p style="color:var(--color-text-secondary); font-size:14px;" data-i18n="merci.error_en">Session unverifiable. If you completed your purchase, check your email for access details.</p></div>
+      </div>
+
+      <p style="font-size:16px; color:var(--color-text-secondary); margin-bottom:var(--space-8);" data-i18n="merci.body_1_en">You didn't just buy a course.</p>
+      <p style="font-size:18px; color:var(--color-text-primary); font-weight:600; margin-bottom:var(--space-40);" data-i18n="merci.body_2_en">You've joined a Private Power Ecosystem (EPP).</p>
+
+      <div class="merci-steps">
+        <div class="merci-step"><span class="step-number">1</span><span data-i18n="merci.step_1_en">Start with The Signal — identify the fractures.</span></div>
+        <div class="merci-step"><span class="step-number">2</span><span data-i18n="merci.step_2_en">Move to The Forge — harden the expertise.</span></div>
+        <div class="merci-step"><span class="step-number">3</span><span data-i18n="merci.step_3_en">Observe The Field — measure the impact.</span></div>
+      </div>
+
+      <div class="merci-ctas">
+        <a href="https://hub.grouperogue.com" class="btn btn--primary btn--lg" data-i18n="merci.cta_portal_en">Access the portal →</a>
+        <a href="../" class="btn btn--ghost btn--lg" data-i18n="merci.cta_home_en">Back to home</a>
+      </div>
+
+      <div class="merci-signature">
+        <p class="merci-signature__name" data-i18n="merci.signature">La Cellule — Groupe ROGUE</p>
+        <p class="merci-signature__sub" data-i18n="merci.signature_sub_en">Artisans of Divergence</p>
+      </div>
+    </section>
+  </main>
+  <script src="../../assets/js/i18n.js"></script>
+  <script src="../../assets/js/checkout.js"></script>
+</body>
+</html>

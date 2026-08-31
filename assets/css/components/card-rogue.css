@@ -1,0 +1,199 @@
+/* ============================================================
+   CARD-ROGUE — Carte profil d'un Rogue
+   Photo N&B obligatoire (classe .grayscale sur img).
+   Bordure 2px top = couleur du vecteur.
+   ============================================================ */
+
+.card-rogue {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-hover), border-color var(--transition-hover);
+  position: relative;
+}
+
+.card-rogue:hover {
+  transform: translateY(-4px);
+  border-color: rgba(248, 245, 245, 0.15);
+}
+
+/* Barre de couleur vecteur en haut */
+.card-rogue::before {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: var(--vector-color, var(--color-border));
+}
+
+/* Vecteur colors via attribute */
+.card-rogue[data-vector="propulseur"]  { --vector-color: var(--vector-propulseur); }
+.card-rogue[data-vector="motivateur"]  { --vector-color: var(--vector-motivateur); }
+.card-rogue[data-vector="coach"]       { --vector-color: var(--vector-coach); }
+.card-rogue[data-vector="architecte"]  { --vector-color: var(--vector-architecte); }
+
+/* Photo container */
+.card-rogue__photo {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background-color: var(--color-bg-primary);
+}
+
+.card-rogue__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(100%);
+  transition: transform var(--transition-smooth);
+}
+
+.card-rogue:hover .card-rogue__photo img {
+  transform: scale(1.03);
+}
+
+/* Placeholder photo (SVG silhouette) */
+.card-rogue__photo-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-rogue__photo-placeholder svg {
+  width: 60px;
+  height: 60px;
+  opacity: 0.15;
+}
+
+/* Body */
+.card-rogue__body {
+  padding: var(--space-20) var(--space-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  flex: 1;
+}
+
+/* Name */
+.card-rogue__name {
+  font-size: var(--text-h3);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--lh-tight);
+}
+
+/* Vector badge */
+.card-rogue__vector {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-size: 11px;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--vector-color, var(--color-text-secondary));
+}
+
+/* Sectors tags */
+.card-rogue__sectors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.card-rogue__sector-tag {
+  font-size: 11px;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  padding: 3px 8px;
+  border-radius: var(--radius-badge);
+}
+
+/* Sector tag colors */
+.card-rogue__sector-tag[data-sector="trajectoires"] { border-color: var(--sector-trajectoires); color: var(--sector-trajectoires); }
+.card-rogue__sector-tag[data-sector="structures"]   { border-color: var(--sector-structures);   color: var(--sector-structures); }
+.card-rogue__sector-tag[data-sector="ecosystemes"]  { border-color: var(--sector-ecosystemes);  color: var(--sector-ecosystemes); }
+.card-rogue__sector-tag[data-sector="futurs"]       { border-color: var(--sector-futurs);       color: var(--sector-futurs); }
+
+/* Signature */
+.card-rogue__signature {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  border-left: 2px solid var(--vector-color, var(--color-border));
+  padding-left: var(--space-12);
+  margin-top: auto;
+}
+
+/* CTA */
+.card-rogue__cta {
+  margin-top: var(--space-16);
+}
+
+/* Availability badge */
+.card-rogue__availability {
+  position: absolute;
+  top: var(--space-12);
+  right: var(--space-12);
+  font-size: 10px;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--radius-badge);
+}
+
+.card-rogue__availability--available {
+  background-color: rgba(45, 122, 79, 0.20);
+  color: var(--sector-trajectoires);
+  border: 1px solid var(--sector-trajectoires);
+}
+
+.card-rogue__availability--unavailable {
+  background-color: rgba(160, 160, 160, 0.12);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+
+/* ----------------------------------------------------------
+   CARD ROGUE — Featured variant (page accueil)
+   Horizontal layout on desktop
+---------------------------------------------------------- */
+.card-rogue--featured {
+  flex-direction: row;
+}
+
+.card-rogue--featured .card-rogue__photo {
+  width: 140px;
+  min-width: 140px;
+  aspect-ratio: auto;
+}
+
+@media (max-width: 768px) {
+  .card-rogue--featured {
+    flex-direction: column;
+  }
+
+  .card-rogue--featured .card-rogue__photo {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+  }
+}
+
+/* ----------------------------------------------------------
+   FILTER HIDDEN STATE
+---------------------------------------------------------- */
+.card-rogue[data-hidden="true"] {
+  display: none;
+}

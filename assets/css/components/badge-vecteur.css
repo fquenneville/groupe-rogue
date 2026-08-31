@@ -1,0 +1,153 @@
+/* ============================================================
+   BADGE-VECTEUR — Badge / pill pour les 4 vecteurs Rogues
+   Active = fond couleur vecteur
+   Inactif = outline seulement
+   ============================================================ */
+
+.badge-vecteur {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  font-size: 11px;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: var(--radius-badge);
+  border: 1px solid var(--vector-color, var(--color-border));
+  color: var(--vector-color, var(--color-text-secondary));
+  background-color: transparent;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+  user-select: none;
+}
+
+.badge-vecteur:focus-visible {
+  outline: 2px solid var(--vector-color, var(--color-accent));
+  outline-offset: 2px;
+}
+
+/* Vecteur colors */
+.badge-vecteur[data-vector="propulseur"],
+.badge-vecteur--propulseur {
+  --vector-color: var(--vector-propulseur);
+}
+.badge-vecteur[data-vector="motivateur"],
+.badge-vecteur--motivateur {
+  --vector-color: var(--vector-motivateur);
+}
+.badge-vecteur[data-vector="coach"],
+.badge-vecteur--coach {
+  --vector-color: var(--vector-coach);
+}
+.badge-vecteur[data-vector="architecte"],
+.badge-vecteur--architecte {
+  --vector-color: var(--vector-architecte);
+}
+
+/* Active state — fond couleur vecteur */
+.badge-vecteur.is-active,
+.badge-vecteur[aria-pressed="true"] {
+  background-color: var(--vector-color, var(--color-border));
+  color: #ffffff;
+  border-color: var(--vector-color, var(--color-border));
+}
+
+/* Hover on inactive */
+.badge-vecteur:not(.is-active):not([aria-pressed="true"]):hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Dot indicator */
+.badge-vecteur__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------
+   FILTER ROW — Group of filter badges
+---------------------------------------------------------- */
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+.filter-row__label {
+  font-size: var(--text-eyebrow);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-right: var(--space-8);
+}
+
+/* ----------------------------------------------------------
+   SECTOR FILTER BADGES (same structure, different palette)
+---------------------------------------------------------- */
+.badge-sector {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  font-size: 11px;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: var(--radius-badge);
+  border: 1px solid var(--sector-color, var(--color-border));
+  color: var(--sector-color, var(--color-text-secondary));
+  background-color: transparent;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+  user-select: none;
+}
+
+.badge-sector[data-sector="trajectoires"] { --sector-color: var(--sector-trajectoires); }
+.badge-sector[data-sector="structures"]   { --sector-color: var(--sector-structures); }
+.badge-sector[data-sector="ecosystemes"]  { --sector-color: var(--sector-ecosystemes); }
+.badge-sector[data-sector="futurs"]       { --sector-color: var(--sector-futurs); }
+
+.badge-sector.is-active,
+.badge-sector[aria-pressed="true"] {
+  background-color: var(--sector-color, var(--color-border));
+  color: #ffffff;
+}
+
+.badge-sector:not(.is-active):not([aria-pressed="true"]):hover {
+  background-color: rgba(255,255,255,0.05);
+}
+
+/* ----------------------------------------------------------
+   ALL / RESET button
+---------------------------------------------------------- */
+.badge-all {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: var(--radius-badge);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  background-color: transparent;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.badge-all.is-active,
+.badge-all[aria-pressed="true"],
+.badge-all:hover {
+  border-color: var(--color-text-primary);
+  color: var(--color-text-primary);
+}
